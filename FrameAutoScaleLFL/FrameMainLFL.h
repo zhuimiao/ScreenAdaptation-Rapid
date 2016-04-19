@@ -18,6 +18,7 @@
 #define FrameMainLFL_h
 #define ScreenWidthLFL CGRectGetMaxX([UIScreen mainScreen].bounds)
 #define ScreenHightLFL CGRectGetMaxY([UIScreen mainScreen].bounds)
+#define ScreenNTHightLFL CGRectGetMaxY([UIScreen mainScreen].bounds) - 64 - 49;
 
 #pragma mark 说明:下面二个参数,看公司项目UI图 具体是哪款机型,默认  iphone6
 /**
@@ -29,6 +30,10 @@ static const float  RealUISrceenHight =  667.0;
  */
 static const float RealUISrceenWidth = 375.0;
 
+static const float  RealUISrceenNTHight =  667.0 - 64 - 49;
+
+
+
 #import "FrameAutoScaleLFL.h"
 #pragma mark 一系列宏定义,快速设置frame等
 /**
@@ -37,13 +42,22 @@ static const float RealUISrceenWidth = 375.0;
  */
 #define WIDTH_LFL(X_LFL) ScreenWidthLFL*(X_LFL)/RealUISrceenWidth
 #define HEIGHT_LFL(Y_LFL) ScreenHightLFL*(Y_LFL)/RealUISrceenHight
+#define HEIGHT_NTLFL(Y_LFL) ScreenHightLFL*(Y_LFL)/RealUISrceenHight
+
 
 #define RectMake_LFL(X_LFL,Y_LFL,WIDTH_LFL,HEIGHT_LFL) CGRectMake(ScreenWidthLFL*(X_LFL)/RealUISrceenWidth,ScreenHightLFL*(Y_LFL)/RealUISrceenHight,ScreenWidthLFL*(WIDTH_LFL)/RealUISrceenWidth, ScreenHightLFL*(HEIGHT_LFL)/RealUISrceenHight)
+
+#define RectMakeNT_LFL(X_LFL,Y_LFL,WIDTH_LFL,HEIGHT_LFL) CGRectMake(ScreenWidthLFL*(X_LFL)/RealUISrceenWidth,ScreenHightLFL*(Y_LFL)/RealUISrceenHight,ScreenWidthLFL*(WIDTH_LFL)/RealUISrceenWidth, ScreenNTHightLFL*(HEIGHT_LFL)/RealUISrceenNTHight)
+
 
 #define EdgeInsets_LFL(X_LFL,Y_LFL,WIDTH_LFL,HEIGHT_LFL) UIEdgeInsetsMake(ScreenWidthLFL*(X_LFL)/RealUISrceenWidth,ScreenHightLFL*(Y_LFL)/RealUISrceenHight,ScreenWidthLFL*(WIDTH_LFL)/RealUISrceenWidth, ScreenHightLFL*(HEIGHT_LFL)/RealUISrceenHight)
 
 #define PointMake_LFL(X_LFL,Y_LFL) CGPointMake(ScreenWidthLFL*(X_LFL)/RealUISrceenWidth, ScreenHightLFL*(Y_LFL)/RealUISrceenHight)
 
 #define SizeMake_LFL(WIDTH_LFL,HEIGHT_LFL) CGSizeMake(ScreenWidthLFL*(WIDTH_LFL)/RealUISrceenWidth, ScreenHightLFL*(HEIGHT_LFL)/RealUISrceenHight)
+
+#define RealNTHeight_LFL(H_LFL) (ScreenNTHightLFL/RealUISrceenNTHight)*H_LFL
+#define RealHeight_LFL(H_LFL)   (ScreenHightLFL/RealUISrceenHight)*H_LFL
+#define RealWidth_LFL(W_LFL)    (ScreenWidthLFL/RealUISrceenWidth)*H_LFL
 
 #endif /* FrameMainLFL_h */

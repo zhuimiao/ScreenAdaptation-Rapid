@@ -204,6 +204,6 @@ CGSizeLFLMake(CGFloat width, CGFloat height)
 - (void)AutoSizeScale{
     _autoSizeScaleX = ScreenWidthLFL/RealUISrceenWidth;
     _autoSizeScaleY = ScreenHightLFL/RealUISrceenHight;
-    _autoSizeNTScaleY =(ScreenHightLFL - 64 - 49)/(RealUISrceenHight - 64 - 49);
+    _autoSizeNTScaleY =(ScreenHightLFL - 64 - 49)/RealUISrceenNTHight;
 }
 @end
