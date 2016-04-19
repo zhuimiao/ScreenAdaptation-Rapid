@@ -21,6 +21,10 @@
  */
 + (CGRect)CGLFLMakeX:(CGFloat) x Y:(CGFloat) y width:(CGFloat) width height:(CGFloat) height;
 /**
+ *  如果有导航栏和tabbar，使用这个方法
+ */
++ (CGRect)CGLFLMakeX:(CGFloat) x Y:(CGFloat) y width:(CGFloat) width NTHeight:(CGFloat) height;
+/**
  setting a view Frame With the UIfigure number special CGRectGetY
  全部对应数值都将按照比例缩放而Y参数除外的frame.eg: 获取上个控件的Y,不可以再次缩放.
  */

@@ -11,6 +11,8 @@
 @interface FrameAutoScaleLFL ()
 @property (nonatomic ,assign)float autoSizeScaleX;/**< 宽度缩放的比例  */
 @property (nonatomic ,assign)float autoSizeScaleY;/**< 高度缩放的比例  */
+@property (nonatomic ,assign)float autoSizeNTScaleY;/**<(navBar,tabBar)高度缩放的比例  */
+
 @end
 
 @implementation FrameAutoScaleLFL
@@ -91,6 +93,13 @@ static bool isFirstAccess = YES;
 + (CGRect)CGLFLMakeX:(CGFloat) x Y:(CGFloat) y width:(CGFloat) width height:(CGFloat) height{
     return CGLFLMake(x, y, width, height);
 }
+
+
++ (CGRect)CGLFLMakeX:(CGFloat) x Y:(CGFloat) y width:(CGFloat) width NTHeight:(CGFloat) height
+{
+    return CGLFLNTMake(x, y, width, height);
+}
+
 /**
  setting a view Frame With the UIfigure number special CGRectGetY
  全部对应数值都将按照比例缩放而Y参数除外的frame.eg: 获取上个控件的Y,不可以再次缩放.
@@ -152,6 +161,20 @@ CGLFLMake(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
     rect.size.height = height * LFL.autoSizeScaleY;
     return rect;
 }
+
+CG_INLINE CGRect
+CGLFLNTMake(CGFloat x, CGFloat y, CGFloat width, CGFloat height)
+{
+    
+    FrameAutoScaleLFL *LFL = [FrameAutoScaleLFL sharedFrameAutoScaleLFL];
+    CGRect rect;
+    rect.origin.x = x *LFL.autoSizeScaleX;
+    rect.origin.y = y * LFL.autoSizeNTScaleY;
+    rect.size.width = width * LFL.autoSizeScaleX;
+    rect.size.height = height * LFL.autoSizeNTScaleY;
+    return rect;
+}
+
 /**
  重写CGPoint 方法
  */
@@ -181,5 +204,6 @@ CGSizeLFLMake(CGFloat width, CGFloat height)
 - (void)AutoSizeScale{
     _autoSizeScaleX = ScreenWidthLFL/RealUISrceenWidth;
     _autoSizeScaleY = ScreenHightLFL/RealUISrceenHight;
+    _autoSizeNTScaleY =(ScreenHightLFL - 64 - 49)/(RealUISrceenHight - 64 - 49);
 }
 @end
