@@ -74,7 +74,7 @@
  *   Xib中得view自动适配
  *  @param NibClassName 需要适配的xib类名
  */
-//+ (void)xibLFLAutoLayoutsWithNibClassName:(NSString *)NibClassName;
++ (UIView *)xibLFLAutoLayoutsWithNibClassName:(NSString *)NibClassName;
 
 /**
  return a fullSrceen frame

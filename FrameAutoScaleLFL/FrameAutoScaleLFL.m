@@ -67,21 +67,30 @@ static bool isFirstAccess = YES;
  *   Xib中得view自动适配
  *  @param NibClassName 需要适配的xib类名
  */
-+ (void)xibLFLAutoLayoutsWithNibClassName:(NSString *)NibClassName
++ (UIView *)xibLFLAutoLayoutsWithNibClassName:(NSString *)NibClassName
 {
-    [self scaleAutoLayouts:[[[NSBundle mainBundle] loadNibNamed: NibClassName owner:nil options:nil]firstObject]];
+    return  [self scaleAutoLayouts:[[[NSBundle mainBundle] loadNibNamed: NibClassName owner:nil options:nil]firstObject]];
 }
 /**
  *可视化的缩放适配
  *  @param LayoutsBaseView 需要适配的控件添加的父类view
  */
-+ (void)scaleAutoLayouts:(UIView *)LayoutsBaseView{
-    for (UIView *viewLFL in LayoutsBaseView.subviews) {
-        viewLFL.frame = [FrameAutoScaleLFL CGLFLMakeX:viewLFL.frame.origin.x Y:viewLFL.frame.origin.y width:viewLFL.frame.size.width height:viewLFL.frame.size.height];
-        if (viewLFL.subviews.count) {
-            [self scaleAutoLayouts:LayoutsBaseView];
++ (UIView *)scaleAutoLayouts:(UIView *)LayoutsBaseView{
+    
+    
+    
+    LayoutsBaseView.frame = [FrameAutoScaleLFL CGLFLMakeX:LayoutsBaseView.frame.origin.x Y:LayoutsBaseView.frame.origin.y width:LayoutsBaseView.frame.size.width height:LayoutsBaseView.frame.size.height];
+    
+    for (NSInteger i = 0 ; i < LayoutsBaseView.subviews.count ; i++) {
+        UIView *viewLFL = LayoutsBaseView.subviews[i];
+        
+        if (viewLFL.subviews.count > 0) {
+            [self scaleAutoLayouts:viewLFL];
+        }else{
+            viewLFL.frame = [FrameAutoScaleLFL CGLFLMakeX:viewLFL.frame.origin.x Y:viewLFL.frame.origin.y width:viewLFL.frame.size.width height:viewLFL.frame.size.height];
         }
     }
+    return LayoutsBaseView;
 }
 
 

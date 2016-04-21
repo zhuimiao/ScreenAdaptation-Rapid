@@ -32,8 +32,6 @@ static const float RealUISrceenWidth = 375.0;
 
 static const float  RealUISrceenNTHight =  667.0 - 64 - 49;
 
-
-
 #import "FrameAutoScaleLFL.h"
 #pragma mark 一系列宏定义,快速设置frame等
 /**
